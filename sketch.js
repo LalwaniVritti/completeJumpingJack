@@ -82,7 +82,7 @@ function draw() {
       p.y=700;
       player.velocityY = -16;
       jumpSound.play();
-      invisibleGround.velocityY=4;
+      //invisibleGround.velocityY=4;
       gameState = PLAY;
     }
   }
