@@ -220,5 +220,4 @@ function newHurdle(){
     //add each platform to the group
     newPlatformGroup.add(plat);
 }
-
 }
