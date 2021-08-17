@@ -74,7 +74,7 @@ function draw() {
 
   if(gameState===START){
     spawnplatforms();
-    if(keyDown("space")) {
+    if(keyDown("up")) {
       platform.y=700;
       player.velocityY = -16;
       jumpSound.play();
