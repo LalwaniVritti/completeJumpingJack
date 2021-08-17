@@ -1,5 +1,3 @@
-var gap=0
-var num=30
 const PLAY = 1;
 const END = 0;
 const START = 2
