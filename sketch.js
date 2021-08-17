@@ -75,7 +75,7 @@ function draw() {
   if(gameState===START){
     spawnplatforms();
     if(keyDown("space")) {
-      p.y=700;
+      platform.y=700;
       player.velocityY = -16;
       jumpSound.play();
       gameState = PLAY;
@@ -151,7 +151,7 @@ function draw() {
 function reset(){
   player.x = 250;
   player.y=300;
-  p.y=350;
+  platform.y=350;
   player.velocityY = 0;
   gameState = START;
   platformGroup.destroyEach();
