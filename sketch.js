@@ -9,11 +9,9 @@ var ground, invisibleGround;
 var platform1,platform2,platform3,platform4,platform5,platform6;
 
 var platformGroup,newPlatformGroup;
-var p, pImage, breakImage;
+var platform, pImage, breakImage;
 
 var bg, bgImage;
-
-
 var score=0;
 var jumpSound , checkPointSound, dieSound;
 var gameOver, restart;
@@ -52,14 +50,14 @@ function setup() {
   player.scale = 1;
   player.depth=10000;
   
-  p = createSprite(250,350);
-  p.addImage(platform3);
-  p.scale=0.1;
+  platform = createSprite(250,350);
+  platform.addImage(platform3);
+  platform.scale=0.1;
   
   gameOver = createSprite(250,250);
   gameOver.addImage(gameOverImg);
   
-  restart = createSprite(250,300);
+  restart = createSprite(250,320);
   restart.addImage(restartImg);
   
 
@@ -73,7 +71,7 @@ function setup() {
 }
 
 function draw() {
-  //player.debug = true;
+  
   background('#F2F5B6');
 
   if(gameState===START){
@@ -82,16 +80,13 @@ function draw() {
       p.y=700;
       player.velocityY = -16;
       jumpSound.play();
-      //invisibleGround.velocityY=4;
       gameState = PLAY;
     }
   }
- 
   
   if (gameState===PLAY){
     spawnplatforms();
-    //player.collide(p)
-
+  
     // to restart the game frameCount can not be reset, so using frameRate
     score = score + Math.round(getFrameRate()/60)
   
@@ -101,7 +96,6 @@ function draw() {
        jumpSound.play();   
     }
     
- 
     if(keyDown("left"))
       {
         player.x-=7
@@ -111,17 +105,15 @@ function draw() {
       {
         player.x+=7
       }
+
     newHurdle();
     //add gravity
     player.velocityY = player.velocityY + 0.8
-    //player.collide(invisibleGround);
     
-
     for(var i =0;i<newPlatformGroup.length;i++){
-    if(newPlatformGroup.get(i).isTouching(player)&& player.velocityY>5){
+    if(newPlatformGroup.get(i).isTouching(player)&& player.velocityY>8){
       newPlatformGroup.get(i).addImage(breakImage);
       newPlatformGroup.get(i).velocityY=10;
-      //player.velocityY = 10;
     }
   }
   
@@ -133,9 +125,9 @@ function draw() {
   else if (gameState === END) {
     gameOver.visible = true;
     restart.visible = true;
+    player.velocityY = 2;
     
     //set velcity of each game object to 0  
-    player.velocityY = 2;
     platformGroup.setVelocityXEach(0);
     
     //set lifetime of the game objects so that they are never destroyed
@@ -151,6 +143,10 @@ function draw() {
   textSize(20);
   fill(255);
   text(" Score  :  " + score, 350,50);
+  if(gameState===START){
+    text("Press Space to make jack jump",130,100);
+    text("Press right and left arrow to make jack go right and left",50,80)
+  }
   
 }
 
@@ -207,17 +203,18 @@ function spawnplatforms() {
 function newHurdle(){
   if(frameCount % 100 == 0) {
     xx=Math.round(random(50,450))
-    var plat = createSprite(xx,-10,150,20);
-    plat.velocityY = 4;
+    var platform = createSprite(xx,-10,150,20);
+    platform.velocityY = 4;
     
-    plat.addImage(platform6);         
-    plat.scale = 0.1;
+    platform.addImage(platform6);         
+    platform.scale = 0.1;
     
 
-    plat.lifetime = 200;
-    plat.collide(player);
+    platform.lifetime = 200;
+    platform.collide(player);
     
     //add each platform to the group
-    newPlatformGroup.add(plat);
+    newPlatformGroup.add(platform);
 }
+
 }
