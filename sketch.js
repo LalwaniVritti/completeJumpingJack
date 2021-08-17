@@ -165,7 +165,7 @@ function reset(){
 
 function spawnplatforms() {
 
-  if(frameCount % 40 == 0) {
+  if(frameCount % 30 == 0) {
     xx=Math.round(random(50,450))
     var platform = createSprite(xx,-10,150,30);
     
