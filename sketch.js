@@ -143,7 +143,7 @@ function draw() {
   text(" Score  :  " + score, 350,50);
   if(gameState===START){
     text("Press up arrow to make jack jump",130,100);
-    text("Press right and left arrow to make jack go right and left",20,80)
+    text("Press right and left arrow to make jack go right and left",10,80)
   }
   
 }
