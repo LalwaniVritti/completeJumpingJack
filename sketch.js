@@ -88,7 +88,7 @@ function draw() {
     // to restart the game frameCount can not be reset, so using frameRate
     score = score + Math.round(getFrameRate()/60)
   
-    // //jump when the space key is pressed
+  
     if(platformGroup.isTouching(player) && player.velocityY>5) {
       player.velocityY = -16;
        jumpSound.play();   
@@ -142,8 +142,8 @@ function draw() {
   fill(255);
   text(" Score  :  " + score, 350,50);
   if(gameState===START){
-    text("Press Space to make jack jump",130,100);
-    text("Press right and left arrow to make jack go right and left",50,80)
+    text("Press up arrow to make jack jump",130,100);
+    text("Press right and left arrow to make jack go right and left",20,80)
   }
   
 }
